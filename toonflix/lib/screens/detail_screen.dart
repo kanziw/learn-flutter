@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:toonflix/models/webtoon_detail_model.dart';
 import 'package:toonflix/models/webtoon_episode_model.dart';
 import 'package:toonflix/services/api_service.dart';
@@ -21,10 +22,47 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   late Future<WebtoonDetailModel> webtoon;
   late Future<List<WebtoonEpisodeModel>> episodes;
+  late SharedPreferences prefs;
+  final String likedToonIdsKey = 'likedToonIds';
+  bool isLiked = false;
+
+  Future<List<String>> getLikedToonIds() async {
+    var likedToonIds = prefs.getStringList(likedToonIdsKey);
+    if (likedToonIds == null) {
+      await prefs.setStringList(likedToonIdsKey, []);
+      likedToonIds = [];
+    }
+
+    return likedToonIds;
+  }
+
+  Future initPrefs() async {
+    prefs = await SharedPreferences.getInstance();
+
+    var likedToonIds = await getLikedToonIds();
+    setState(() {
+      isLiked = likedToonIds.contains(widget.id);
+    });
+  }
+
+  onHeartTap() async {
+    var likedToonIds = await getLikedToonIds();
+    if (isLiked) {
+      likedToonIds.remove(widget.id);
+    } else {
+      likedToonIds.add(widget.id);
+    }
+
+    await prefs.setStringList(likedToonIdsKey, likedToonIds);
+    setState(() {
+      isLiked = !isLiked;
+    });
+  }
 
   @override
   void initState() {
     super.initState();
+    initPrefs();
     webtoon = ApiService.getToonById(widget.id);
     episodes = ApiService.getLatestEpisodesById(widget.id);
   }
@@ -37,6 +75,14 @@ class _DetailScreenState extends State<DetailScreen> {
         elevation: 2,
         backgroundColor: Colors.white,
         foregroundColor: Colors.green,
+        actions: [
+          IconButton(
+            onPressed: onHeartTap,
+            icon: Icon(
+              isLiked ? Icons.favorite : Icons.favorite_outline,
+            ),
+          ),
+        ],
         title: Text(
           widget.title,
           style: const TextStyle(
