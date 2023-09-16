@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toonflix/widgets/button.dart';
 import 'package:toonflix/widgets/currency_card.dart';
+import 'package:toonflix/widgets/radius_button.dart';
 
 void main() {
   runApp(const App());
@@ -77,12 +77,12 @@ class App extends StatelessWidget {
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Button(
+                    RadiusButton(
                       text: 'Transfer',
                       bgColor: Color(0xFFF1B33B),
                       textColor: Colors.black,
                     ),
-                    Button(
+                    RadiusButton(
                       text: 'Request',
                       bgColor: Color(0xFF1F2123),
                       textColor: Colors.white,

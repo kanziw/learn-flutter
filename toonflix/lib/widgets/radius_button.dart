@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class Button extends StatelessWidget {
+class RadiusButton extends StatelessWidget {
   final String text;
   final Color bgColor;
   final Color textColor;
 
-  const Button({
+  const RadiusButton({
     super.key,
     required this.text,
     required this.bgColor,
