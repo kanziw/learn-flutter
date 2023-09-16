@@ -116,32 +116,35 @@ class App extends StatelessWidget {
                 const SizedBox(
                   height: 20,
                 ),
-                const CurrencyCard(
-                  name: 'Euro',
-                  code: 'EUR',
-                  amount: '6 428',
-                  icon: Icons.euro_rounded,
-                  isInverted: false,
-                ),
-                Transform.translate(
-                  offset: const Offset(0, -20),
-                  child: const CurrencyCard(
-                    name: 'Bitcoin',
-                    code: 'BTC',
-                    amount: '9 785',
-                    icon: Icons.currency_bitcoin_rounded,
-                    isInverted: true,
-                  ),
-                ),
-                Transform.translate(
-                  offset: const Offset(0, -40),
-                  child: const CurrencyCard(
-                    name: 'Dollor',
-                    code: 'USD',
-                    amount: '428',
-                    icon: Icons.attach_money_outlined,
-                    isInverted: false,
-                  ),
+                Column(
+                  children: [
+                    const CurrencyCard(
+                      name: 'Euro',
+                      code: 'EUR',
+                      amount: '6 428',
+                      icon: Icons.euro_rounded,
+                      isInverted: false,
+                    ),
+                    const CurrencyCard(
+                      name: 'Bitcoin',
+                      code: 'BTC',
+                      amount: '9 785',
+                      icon: Icons.currency_bitcoin_rounded,
+                      isInverted: true,
+                    ),
+                    const CurrencyCard(
+                      name: 'Dollor',
+                      code: 'USD',
+                      amount: '428',
+                      icon: Icons.attach_money_outlined,
+                      isInverted: false,
+                    ),
+                  ].asMap().entries.map((entry) {
+                    return Transform.translate(
+                      offset: Offset(0, -20 * entry.key.toDouble()),
+                      child: entry.value,
+                    );
+                  }).toList(),
                 ),
               ],
             ),
