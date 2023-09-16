@@ -25,10 +25,20 @@ class HomeScreen extends StatelessWidget {
       body: FutureBuilder(
         future: webtoons,
         builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return const Text('There is data!');
+          if (!snapshot.hasData) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
-          return const Text('Loading...');
+
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: snapshot.data!.length,
+            itemBuilder: (context, index) {
+              final webtoon = snapshot.data![index];
+              return Text(webtoon.title);
+            },
+          );
         },
       ),
     );
