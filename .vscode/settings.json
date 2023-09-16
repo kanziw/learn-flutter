@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.suggest.insertMode": "replace",
+  "editor.defaultFormatter": "Dart-Code.dart-code",
+  "editor.inlayHints.enabled": "offUnlessPressed",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+  },
+  "dart.previewFlutterUiGuides": true,
+  "dart.openDevTools": "flutter",
+  "dart.debugExternalPackageLibraries": true,
+  "dart.debugSdkLibraries": false,
+}
