@@ -48,6 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  void onResetPressed() {
+    timer.cancel();
+    setState(() {
+      totalSeconds = twentyFiveMinutes;
+      isRunning = false;
+    });
+  }
+
   String format(int seconds) {
     var duration = Duration(seconds: seconds);
     return duration.toString().split('.').first.substring(2);
@@ -60,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           children: [
             Flexible(
-              flex: 1,
+              flex: 2,
               child: Container(
                 alignment: Alignment.bottomCenter,
                 child: Text(
@@ -74,22 +82,34 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Flexible(
-              flex: 3,
-              child: Center(
-                child: IconButton(
-                  iconSize: 120,
-                  color: Theme.of(context).cardColor,
-                  onPressed: isRunning ? onPausePressed : onStartPressed,
-                  icon: Icon(
-                    isRunning
-                        ? Icons.pause_circle_outline
-                        : Icons.play_circle_outline,
+              flex: 4,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    iconSize: 120,
+                    color: Theme.of(context).cardColor,
+                    onPressed: isRunning ? onPausePressed : onStartPressed,
+                    icon: Icon(
+                      isRunning
+                          ? Icons.pause_circle_outline
+                          : Icons.play_circle_outline,
+                    ),
                   ),
-                ),
+                  TextButton(
+                    onPressed: onResetPressed,
+                    child: Text(
+                      'Reset',
+                      style: TextStyle(
+                        color: Theme.of(context).cardColor,
+                      ),
+                    ),
+                  )
+                ],
               ),
             ),
             Flexible(
-              flex: 1,
+              flex: 2,
               child: Row(
                 children: [
                   Expanded(
