@@ -64,93 +64,92 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        body: Column(
-          children: [
-            Flexible(
-              flex: 2,
-              child: Container(
-                alignment: Alignment.bottomCenter,
-                child: Text(
-                  format(totalSeconds),
-                  style: TextStyle(
-                    color: Theme.of(context).cardColor,
-                    fontSize: 89,
-                    fontWeight: FontWeight.w600,
-                  ),
+      backgroundColor: Theme.of(context).colorScheme.background,
+      body: Column(
+        children: [
+          Flexible(
+            flex: 2,
+            child: Container(
+              alignment: Alignment.bottomCenter,
+              child: Text(
+                format(totalSeconds),
+                style: TextStyle(
+                  color: Theme.of(context).cardColor,
+                  fontSize: 89,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
             ),
-            Flexible(
-              flex: 4,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    iconSize: 120,
-                    color: Theme.of(context).cardColor,
-                    onPressed: isRunning ? onPausePressed : onStartPressed,
-                    icon: Icon(
-                      isRunning
-                          ? Icons.pause_circle_outline
-                          : Icons.play_circle_outline,
+          ),
+          Flexible(
+            flex: 4,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  iconSize: 120,
+                  color: Theme.of(context).cardColor,
+                  onPressed: isRunning ? onPausePressed : onStartPressed,
+                  icon: Icon(
+                    isRunning
+                        ? Icons.pause_circle_outline
+                        : Icons.play_circle_outline,
+                  ),
+                ),
+                TextButton(
+                  onPressed: onResetPressed,
+                  child: Text(
+                    'Reset',
+                    style: TextStyle(
+                      color: Theme.of(context).cardColor,
                     ),
                   ),
-                  TextButton(
-                    onPressed: onResetPressed,
-                    child: Text(
-                      'Reset',
-                      style: TextStyle(
-                        color: Theme.of(context).cardColor,
-                      ),
-                    ),
-                  )
-                ],
-              ),
+                )
+              ],
             ),
-            Flexible(
-              flex: 2,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).cardColor,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Pomodoros',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .displayLarge!
-                                  .color,
-                            ),
+          ),
+          Flexible(
+            flex: 2,
+            child: Row(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Pomodoros',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600,
+                            color:
+                                Theme.of(context).textTheme.displayLarge!.color,
                           ),
-                          Text(
-                            '$totalPomodoros',
-                            style: TextStyle(
-                              fontSize: 58,
-                              fontWeight: FontWeight.w600,
-                              color: Theme.of(context)
-                                  .textTheme
-                                  .headlineLarge!
-                                  .color,
-                            ),
+                        ),
+                        Text(
+                          '$totalPomodoros',
+                          style: TextStyle(
+                            fontSize: 58,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context)
+                                .textTheme
+                                .headlineLarge!
+                                .color,
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
